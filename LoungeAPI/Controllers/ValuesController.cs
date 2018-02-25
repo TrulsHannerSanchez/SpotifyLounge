@@ -25,8 +25,14 @@ namespace LoungeAPI.Controllers
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody]string value)
+        public JsonResult Post([FromBody]string value)
         {
+
+            return Json(new
+            {
+                message = "The value was not saved",
+                value,
+            });
         }
 
         // PUT api/values/5
