@@ -15,11 +15,10 @@ namespace LoungeAPI
     {
         public Startup(IHostingEnvironment env)
         {
-            string appSettingsFile = env.IsDevelopment() ? "Secrets" : env.EnvironmentName;
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-                .AddJsonFile($"appsettings.{appSettingsFile}.json", optional: false, reloadOnChange: true)
+                .AddJsonFile($"appsettings.{env.EnvironmentName}.Secrets.json", optional: false, reloadOnChange: true)
                 .AddEnvironmentVariables();
             Configuration = builder.Build();
         }
