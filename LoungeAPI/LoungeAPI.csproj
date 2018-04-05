@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
-    <Configurations>Debug;Release;Secrets</Configurations>
+    <Configurations>Development;Release;Test</Configurations>
   </PropertyGroup>
 
   <ItemGroup>

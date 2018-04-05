@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.2036
+VisualStudioVersion = 15.0.27130.2024
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoungeAPI", "LoungeAPI\LoungeAPI.csproj", "{8F037AF9-4C87-4793-84F1-AE7869B672D8}"
 EndProject
@@ -11,21 +11,21 @@ Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
-		Secrets|Any CPU = Secrets|Any CPU
+		Test|Any CPU = Test|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{8F037AF9-4C87-4793-84F1-AE7869B672D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8F037AF9-4C87-4793-84F1-AE7869B672D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F037AF9-4C87-4793-84F1-AE7869B672D8}.Debug|Any CPU.ActiveCfg = Development|Any CPU
+		{8F037AF9-4C87-4793-84F1-AE7869B672D8}.Debug|Any CPU.Build.0 = Development|Any CPU
 		{8F037AF9-4C87-4793-84F1-AE7869B672D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8F037AF9-4C87-4793-84F1-AE7869B672D8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8F037AF9-4C87-4793-84F1-AE7869B672D8}.Secrets|Any CPU.ActiveCfg = Secrets|Any CPU
-		{8F037AF9-4C87-4793-84F1-AE7869B672D8}.Secrets|Any CPU.Build.0 = Secrets|Any CPU
-		{93C36093-07F3-4607-A58A-D9AD94DC50B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{93C36093-07F3-4607-A58A-D9AD94DC50B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F037AF9-4C87-4793-84F1-AE7869B672D8}.Test|Any CPU.ActiveCfg = Test|Any CPU
+		{8F037AF9-4C87-4793-84F1-AE7869B672D8}.Test|Any CPU.Build.0 = Test|Any CPU
+		{93C36093-07F3-4607-A58A-D9AD94DC50B3}.Debug|Any CPU.ActiveCfg = Development|Any CPU
+		{93C36093-07F3-4607-A58A-D9AD94DC50B3}.Debug|Any CPU.Build.0 = Development|Any CPU
 		{93C36093-07F3-4607-A58A-D9AD94DC50B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{93C36093-07F3-4607-A58A-D9AD94DC50B3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{93C36093-07F3-4607-A58A-D9AD94DC50B3}.Secrets|Any CPU.ActiveCfg = Secrets|Any CPU
-		{93C36093-07F3-4607-A58A-D9AD94DC50B3}.Secrets|Any CPU.Build.0 = Secrets|Any CPU
+		{93C36093-07F3-4607-A58A-D9AD94DC50B3}.Test|Any CPU.ActiveCfg = Test|Any CPU
+		{93C36093-07F3-4607-A58A-D9AD94DC50B3}.Test|Any CPU.Build.0 = Test|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
