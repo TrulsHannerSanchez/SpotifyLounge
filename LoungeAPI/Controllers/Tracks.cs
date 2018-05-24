@@ -28,12 +28,12 @@ namespace LoungeAPI.Controllers
 
         private HttpClient httpClient = new HttpClient();
         
-        private async Task<SpotifySearchResponse> getTracks(string q)
+        private async Task<SpotifySearchResponse> getTracks(string q, int limit, int offset)
         {
             string spotifyAccessToken = await getBearerToken();
             httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", spotifyAccessToken);
             
-            var response = await httpClient.GetAsync("https://api.spotify.com/v1/search?type=track&q="+q);
+            var response = await httpClient.GetAsync("https://api.spotify.com/v1/search?type=track&q="+q+"&limit="+limit+"&offset="+offset);
             
             var responseString = await response.Content.ReadAsStringAsync();
             var responseContent = JsonConvert.DeserializeObject<SpotifyTrackResponse>(responseString);
@@ -44,7 +44,7 @@ namespace LoungeAPI.Controllers
         private async Task<List<Track>> formatTracks(List<SpotifyItem> tracks) {
 
             List<Track> formattedTracks = new List<Track>();
-
+            
             foreach (SpotifyItem item in tracks) {
 
                 Track t = new Track();
@@ -66,8 +66,7 @@ namespace LoungeAPI.Controllers
         private async Task<string> getBearerToken() {
             var clientID = _configuration.GetSection("Secrets").GetValue<string>("ClientId");
             var clientSecret = _configuration.GetSection("Secrets").GetValue<string>("ClientSecret");
-
-
+            
             httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", Base64Encode(clientID + ":" + clientSecret));
             
             var values = new Dictionary<string, string>
@@ -92,25 +91,26 @@ namespace LoungeAPI.Controllers
             return string.Empty;
         }
 
-        // GET api/values
-        //[HttpGet]
-        //public async Task<List<Track>> Get()
-        //{
-        //    var searchResponse = await getTracks();
-        //    var formattedTracks = await formatTracks(searchResponse.items);
-
-
-        //    return formattedTracks;
-        //}
-
-        //Nästa steg!!
+        
         [HttpGet]
-        public async Task<List<Track>> Get([FromQuery] string q) {
+        public async Task<ReturnSearchResponse> Get([FromQuery] string q, int limit, int offset) {
 
-            var searchResponse = await getTracks(q);
-            var formattedTracks = await formatTracks(searchResponse.items);
+            if (limit < 1) limit = 1;
+            if (limit > 50) limit = 50;
+            if (offset < 0) offset = 0;
+            if (limit + offset > 10000) offset = 10000 - limit;
             
-            return formattedTracks;
+
+            var searchResponse = await getTracks(q,limit,offset);
+            var formattedTracks = await formatTracks(searchResponse.items);
+
+            ReturnSearchResponse response = new ReturnSearchResponse();
+            response.trackCount = formattedTracks.Count;
+            response.tracks = formattedTracks;
+            response.trackLimit = limit;
+            response.trackOffset = offset;
+
+            return response;
             
 
         }

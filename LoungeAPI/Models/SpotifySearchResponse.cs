@@ -5,6 +5,17 @@ using System.Threading.Tasks;
 
 namespace LoungeAPI.Models
 {
+
+    public class ReturnSearchResponse
+    {
+        public List<Track> tracks { get; set; }
+        public int trackCount { get; set; }
+        public int trackLimit { get; set; }
+        public int trackOffset { get; set; }
+
+
+    }
+
     public class SpotifySearchResponse
     {
 
