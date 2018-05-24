@@ -9,13 +9,23 @@ using System.Text;
 using System.Threading.Tasks;
 using LoungeAPI.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 
 namespace LoungeAPI.Controllers
 {
+    
     [Route("api/[controller]")]
     public class TracksController : Controller
     {
+
+        private readonly IConfiguration _configuration;
+
+        public TracksController(IConfiguration configuration)
+        {
+            _configuration = configuration;
+        }
+
         private HttpClient httpClient = new HttpClient();
         
         private async Task<SpotifySearchResponse> getTracks(string q)
@@ -54,9 +64,10 @@ namespace LoungeAPI.Controllers
         }
 
         private async Task<string> getBearerToken() {
-            var clientID = "2b52689e7d9e406e86b67a7b99516c79";
-            var clientSecret = "9efe16fab44b4ff1b50ff9aa84d630b0";
-            
+            var clientID = _configuration.GetSection("Secrets").GetValue<string>("ClientId");
+            var clientSecret = _configuration.GetSection("Secrets").GetValue<string>("ClientSecret");
+
+
             httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", Base64Encode(clientID + ":" + clientSecret));
             
             var values = new Dictionary<string, string>
