@@ -12,8 +12,6 @@ import { HomeComponent } from './components/home/home.component';
     declarations: [
         AppComponent,
         NavMenuComponent,
-        CounterComponent,
-        FetchDataComponent,
         HomeComponent
     ],
     imports: [
